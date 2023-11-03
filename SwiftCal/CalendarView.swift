@@ -7,9 +7,9 @@
 
 import SwiftUI
 import CoreData
+import WidgetKit
 
 struct CalendarView: View {
-	private let daysOfWeek = ["M", "T", "W", "T", "F", "S", "S"]
     @Environment(\.managedObjectContext) private var viewContext
 
     @FetchRequest(
@@ -21,29 +21,11 @@ struct CalendarView: View {
     var body: some View {
         NavigationView {
 			VStack {
-				HStack {
-					ForEach(daysOfWeek, id: \.self) { dayOfWeek in
-						Text(dayOfWeek)
-							.fontWeight(.black)
-							.foregroundStyle(.orange)
-							.frame(maxWidth: .infinity)
-					}
-				}
+				SharedCalendarHeader()
 				
-				LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: 7)) {
-					ForEach(days) { day in
-						Text(day.date?.formatted(.dateTime.day()) ?? "")
-							.fontWeight(.bold)
-							.foregroundStyle(day.foregroundColor)
-							.frame(maxWidth: .infinity, minHeight: 40)
-							.background(Circle().fill(day.backgroundColor))
-							.onTapGesture {
-								if day.isTappable {
-									day.didStudy.toggle()
-									saveContext()
-								}
-							}
-					}
+				SharedCalendarGridView(days: Array(days)) {
+					saveContext()
+					WidgetCenter.shared.reloadTimelines(ofKind: "SwiftCalWidget")
 				}
 				
 				Spacer()
@@ -76,28 +58,6 @@ struct CalendarView: View {
 		} catch {
 			print("Failed to saved context: \(error.localizedDescription)")
 		}
-	}
-}
-
-private extension Day {
-	var foregroundColor: Color {
-		if date?.isInCurrentMonth == true {
-			didStudy ? .orange : .secondary
-		} else {
-			.secondary.opacity(0.4)
-		}
-	}
-	
-	var backgroundColor: Color {
-		if date?.isInCurrentMonth == true {
-			.orange.opacity(didStudy ? 0.3 : 0.0)
-		} else {
-			.secondary.opacity(didStudy ? 0.1 : 0.0)
-		}
-	}
-	
-	var isTappable: Bool {
-		date!.dayInt <= Date().dayInt && date!.monthInt == Date().monthInt
 	}
 }
 
