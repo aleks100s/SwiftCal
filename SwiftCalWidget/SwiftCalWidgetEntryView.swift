@@ -12,11 +12,15 @@ struct SwiftCalWidgetEntryView : View {
 
 	var body: some View {
 		HStack(spacing: 16) {
-			SharedStreakView(numberFontSize: 70, textFont: .caption, days: entry.days)
+			Link(destination: URL(string: "streak")!) {
+				SharedStreakView(numberFontSize: 70, textFont: .caption, days: entry.days)
+			}
 			
 			VStack {
 				SharedCalendarHeader(font: .caption)
-				SharedCalendarGridView(days: entry.days, font: .caption2, minHeight: 20, spacing: 2, onSaveTapped: {})
+				Link(destination: URL(string: "calendar")!) {
+					SharedCalendarGridView(days: entry.days, font: .caption2, minHeight: 20, spacing: 2, onSaveTapped: {})
+				}
 			}
 		}
 	}

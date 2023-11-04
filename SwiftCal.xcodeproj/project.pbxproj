@@ -169,11 +169,11 @@
 			children = (
 				27E2CC382AF41257003712DC /* SwiftCalWidgetBundle.swift */,
 				27E2CC3A2AF41257003712DC /* SwiftCalWidget.swift */,
-				27E2CC3C2AF41258003712DC /* Assets.xcassets */,
-				27E2CC3E2AF41258003712DC /* Info.plist */,
 				27E2CC482AF46072003712DC /* SwiftCalWidgetEntryView.swift */,
 				27E2CC4A2AF4609E003712DC /* Provider.swift */,
 				27E2CC4C2AF460B9003712DC /* Entry.swift */,
+				27E2CC3C2AF41258003712DC /* Assets.xcassets */,
+				27E2CC3E2AF41258003712DC /* Info.plist */,
 			);
 			path = SwiftCalWidget;
 			sourceTree = "<group>";
