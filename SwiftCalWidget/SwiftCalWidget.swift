@@ -15,7 +15,7 @@ struct SwiftCalWidget: Widget {
         StaticConfiguration(kind: kind, provider: Provider()) { entry in
             if #available(iOS 17.0, *) {
                 SwiftCalWidgetEntryView(entry: entry)
-                    .containerBackground(.fill.tertiary, for: .widget)
+					.containerBackground(.clear, for: .widget)
             } else {
                 SwiftCalWidgetEntryView(entry: entry)
                     .padding()
@@ -24,13 +24,41 @@ struct SwiftCalWidget: Widget {
         }
         .configurationDisplayName("My Widget")
         .description("This is an example widget.")
-		.supportedFamilies([.systemMedium])
+		.supportedFamilies(
+			[
+				.systemMedium,
+				.accessoryInline,
+				.accessoryCircular,
+				.accessoryRectangular
+			]
+		)
     }
 }
 
-#Preview(as: .systemSmall) {
+#Preview(as: .systemMedium) {
     SwiftCalWidget()
 } timeline: {
-	Entry(date: .now, days: [])
-	Entry(date: .now, days: [])
+	Entry(date: .now, days: PersistenceController.generatePreivewDays())
+	Entry(date: .now, days: PersistenceController.generatePreivewDays())
+}
+
+#Preview(as: .accessoryInline) {
+	SwiftCalWidget()
+} timeline: {
+	Entry(date: .now, days: PersistenceController.generatePreivewDays())
+	Entry(date: .now, days: PersistenceController.generatePreivewDays())
+}
+
+#Preview(as: .accessoryCircular) {
+	SwiftCalWidget()
+} timeline: {
+	Entry(date: .now, days: PersistenceController.generatePreivewDays())
+	Entry(date: .now, days: PersistenceController.generatePreivewDays())
+}
+
+#Preview(as: .accessoryRectangular) {
+	SwiftCalWidget()
+} timeline: {
+	Entry(date: .now, days: PersistenceController.generatePreivewDays())
+	Entry(date: .now, days: PersistenceController.generatePreivewDays())
 }

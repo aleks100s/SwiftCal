@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		27747C742AF961700088C321 /* MediumCalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27747C722AF961520088C321 /* MediumCalendarView.swift */; };
+		27747C772AF963EA0088C321 /* CircularCalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27747C752AF963C10088C321 /* CircularCalendarView.swift */; };
+		27747C7A2AF966460088C321 /* RectangularCalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27747C782AF9660B0088C321 /* RectangularCalendarView.swift */; };
 		277E17812AF18F85004E7A77 /* SwiftCalApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 277E17802AF18F85004E7A77 /* SwiftCalApp.swift */; };
 		277E17832AF18F85004E7A77 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 277E17822AF18F85004E7A77 /* CalendarView.swift */; };
 		277E17852AF18F86004E7A77 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 277E17842AF18F86004E7A77 /* Assets.xcassets */; };
@@ -64,6 +67,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		27747C722AF961520088C321 /* MediumCalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediumCalendarView.swift; sourceTree = "<group>"; };
+		27747C752AF963C10088C321 /* CircularCalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularCalendarView.swift; sourceTree = "<group>"; };
+		27747C782AF9660B0088C321 /* RectangularCalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RectangularCalendarView.swift; sourceTree = "<group>"; };
 		277E177D2AF18F85004E7A77 /* SwiftCal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftCal.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		277E17802AF18F85004E7A77 /* SwiftCalApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftCalApp.swift; sourceTree = "<group>"; };
 		277E17822AF18F85004E7A77 /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
@@ -112,6 +118,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		27747C712AF9612D0088C321 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				27747C722AF961520088C321 /* MediumCalendarView.swift */,
+				27747C752AF963C10088C321 /* CircularCalendarView.swift */,
+				27747C782AF9660B0088C321 /* RectangularCalendarView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		277E17742AF18F85004E7A77 = {
 			isa = PBXGroup;
 			children = (
@@ -167,6 +183,7 @@
 		27E2CC372AF41257003712DC /* SwiftCalWidget */ = {
 			isa = PBXGroup;
 			children = (
+				27747C712AF9612D0088C321 /* Views */,
 				27E2CC382AF41257003712DC /* SwiftCalWidgetBundle.swift */,
 				27E2CC3A2AF41257003712DC /* SwiftCalWidget.swift */,
 				27E2CC482AF46072003712DC /* SwiftCalWidgetEntryView.swift */,
@@ -314,7 +331,9 @@
 				27E2CC5C2AF464FF003712DC /* Date+.swift in Sources */,
 				27E2CC5B2AF464E2003712DC /* SwiftCal.xcdatamodeld in Sources */,
 				27E2CC542AF4633F003712DC /* SharedCalendarHeader.swift in Sources */,
+				27747C742AF961700088C321 /* MediumCalendarView.swift in Sources */,
 				27E2CC572AF4641C003712DC /* SharedCalendarGridView.swift in Sources */,
+				27747C7A2AF966460088C321 /* RectangularCalendarView.swift in Sources */,
 				27E2CC4D2AF460B9003712DC /* Entry.swift in Sources */,
 				27E2CC512AF4620C003712DC /* SharedStreakView.swift in Sources */,
 				27E2CC602AF469D5003712DC /* StreakCalculator.swift in Sources */,
@@ -323,6 +342,7 @@
 				27E2CC492AF46072003712DC /* SwiftCalWidgetEntryView.swift in Sources */,
 				27E2CC5D2AF466E3003712DC /* Persistence.swift in Sources */,
 				27E2CC5A2AF46489003712DC /* Day+.swift in Sources */,
+				27747C772AF963EA0088C321 /* CircularCalendarView.swift in Sources */,
 				27E2CC392AF41257003712DC /* SwiftCalWidgetBundle.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

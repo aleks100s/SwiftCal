@@ -8,20 +8,29 @@
 import SwiftUI
 
 struct SwiftCalWidgetEntryView : View {
-	var entry: Entry
+	let entry: Entry
+	
+	@Environment(\.widgetFamily) var widgetFamily
 
 	var body: some View {
-		HStack(spacing: 16) {
-			Link(destination: URL(string: "streak")!) {
-				SharedStreakView(numberFontSize: 70, textFont: .caption, days: entry.days)
-			}
+		switch widgetFamily {
+		case .systemMedium:
+			MediumCalendarView(entry: entry)
 			
-			VStack {
-				SharedCalendarHeader(font: .caption)
-				Link(destination: URL(string: "calendar")!) {
-					SharedCalendarGridView(days: entry.days, font: .caption2, minHeight: 20, spacing: 2, onSaveTapped: {})
-				}
-			}
+		case .accessoryInline:
+			Label("Streak - \(StreakCalculator.calculateStreak(days: entry.days))", systemImage: "swift")
+				.widgetURL(URL(string: "streak"))
+			
+		case .accessoryCircular:
+			CircularCalendarView(entry: entry)
+				.widgetURL(URL(string: "streak"))
+			
+		case .accessoryRectangular:
+			RectangularCalendarView(entry: entry)
+				.widgetURL(URL(string: "calendar"))
+			
+		default:
+			EmptyView()
 		}
 	}
 }
