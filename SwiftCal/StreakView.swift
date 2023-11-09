@@ -6,15 +6,14 @@
 //
 
 import SwiftUI
-import CoreData
+import SwiftData
 
 struct StreakView: View {
-	@FetchRequest(
-		sortDescriptors: [NSSortDescriptor(keyPath: \Day.date, ascending: true)],
-		predicate: NSPredicate(format: "(date >= %@) AND (date <= %@)", Date().startOfMonth as CVarArg, Date().endOfMonth as CVarArg),
-		animation: .default)
-	private var days: FetchedResults<Day>
+	static var startDate: Date { .now.startOfMonthWithCalendarPrefix }
+	static var endDate: Date { .now.endOfMonth }
 	
+	@Query(filter: #Predicate<Day> { $0.date > startDate && $0.date < endDate }, sort: \Day.date, animation: .default)
+	var days: [Day]
 	
 	var body: some View {
 		SharedStreakView(numberFontSize: 200, textFont: .title2, days: Array(days))

@@ -6,11 +6,10 @@
 //
 
 import SwiftUI
+import SwiftData
 
 @main
 struct SwiftCalApp: App {
-    let persistenceController = PersistenceController.shared
-	
 	@State private var selectedTab = 0
 
     var body: some Scene {
@@ -24,7 +23,7 @@ struct SwiftCalApp: App {
 					.tabItem { Label("Streak", systemImage: "swift") }
 					.tag(1)
 			}
-			.environment(\.managedObjectContext, persistenceController.container.viewContext)
+			.modelContainer(Persistence.container)
 			.onOpenURL { url in
 				switch url.absoluteString {
 				case "streak":

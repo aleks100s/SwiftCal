@@ -39,7 +39,7 @@ import WidgetKit
 
 struct SwiftCalWidgetEntryViewPreview: PreviewProvider {
 	static var previews: some View {
-		SwiftCalWidgetEntryView(entry: Entry(date: Date(), days: PersistenceController.generatePreivewDays()))
+		SwiftCalWidgetEntryView(entry: Entry(date: Date(), days: Persistence.generatePreivewDays()))
 			.containerBackground(for: .widget) {
 				Color.clear
 			}

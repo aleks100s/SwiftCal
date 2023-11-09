@@ -22,7 +22,7 @@ struct SharedCalendarGridView: View {
 		LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: 7), spacing: spacing) {
 			ForEach(days) { day in
 				if isLockScreenMode {
-					if day.date?.isInCurrentMonth == false {
+					if !day.date.isInCurrentMonth {
 						Text(" ")
 					} else if day.didStudy {
 						Image(systemName: "swift")
@@ -41,7 +41,7 @@ struct SharedCalendarGridView: View {
 	
 	@ViewBuilder
 	private func calendarDay(_ day: Day) -> some View {
-		Text(day.date?.formatted(.dateTime.day()) ?? "")
+		Text(day.date.formatted(.dateTime.day()))
 			.font(font)
 			.fontWeight(fontWeight)
 			.foregroundStyle(foregroundColor ?? day.foregroundColor)
@@ -64,5 +64,5 @@ struct SharedCalendarGridView: View {
 }
 
 #Preview {
-	SharedCalendarGridView(days: PersistenceController.generatePreivewDays(), onSaveTapped: {})
+	SharedCalendarGridView(days: Persistence.generatePreivewDays(), onSaveTapped: {})
 }

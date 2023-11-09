@@ -24,7 +24,8 @@ import WidgetKit
 
 struct CircularCalendarViewPreview: PreviewProvider {
 	static var previews: some View {
-		CircularCalendarView(entry: Entry(date: Date(), days: PersistenceController.generatePreivewDays()))
+		CircularCalendarView(entry: Entry(date: Date(), days: 
+				Persistence.generatePreivewDays()))
 			.containerBackground(for: .widget) {
 				Color.clear
 			}

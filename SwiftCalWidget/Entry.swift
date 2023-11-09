@@ -12,12 +12,12 @@ struct Entry: TimelineEntry {
 	let days: [Day]
 	
 	var currentCalendarDays: Int {
-		days.filter { $0.date?.isInCurrentMonth ?? false }
+		days.filter { $0.date.isInCurrentMonth }
 			.count
 	}
 	
 	var daysStudied: Int {
-		days.filter { $0.date?.isInCurrentMonth ?? false }
+		days.filter { $0.date.isInCurrentMonth }
 			.filter { $0.didStudy }
 			.count
 	}

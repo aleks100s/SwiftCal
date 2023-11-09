@@ -6,17 +6,16 @@
 //
 
 import SwiftUI
-import CoreData
+import SwiftData
 import WidgetKit
 
 struct CalendarView: View {
-    @Environment(\.managedObjectContext) private var viewContext
-
-    @FetchRequest(
-        sortDescriptors: [NSSortDescriptor(keyPath: \Day.date, ascending: true)],
-		predicate: NSPredicate(format: "(date >= %@) AND (date <= %@)", Date().startOfMonthWithCalendarPrefix as CVarArg, Date().endOfMonth as CVarArg),
-		animation: .default)
-    private var days: FetchedResults<Day>
+	private static var startDate: Date { .now.startOfMonthWithCalendarPrefix }
+	private static var endDate: Date { .now.endOfMonth }
+	
+    @Environment(\.modelContext) private var context
+	@Query(filter: #Predicate<Day> { $0.date > startDate && $0.date < endDate }, sort: \Day.date, animation: .default)
+	private var days: [Day]
 
     var body: some View {
         NavigationView {
@@ -24,7 +23,6 @@ struct CalendarView: View {
 				SharedCalendarHeader()
 				
 				SharedCalendarGridView(days: Array(days)) {
-					saveContext()
 					WidgetCenter.shared.reloadTimelines(ofKind: "SwiftCalWidget")
 				}
 				
@@ -45,22 +43,13 @@ struct CalendarView: View {
 	
 	func createMonthDates(date: Date) {
 		for dayOffset in 0 ..< date.numberOfDaysInMonth {
-			let newDay = Day(context: viewContext)
-			newDay.date = Calendar.current.date(byAdding: .day, value: dayOffset, to: date.startOfMonth)
-			newDay.didStudy = false
-		}
-		saveContext()
-	}
-	
-	func saveContext() {
-		do {
-			try viewContext.save()
-		} catch {
-			print("Failed to saved context: \(error.localizedDescription)")
+			let date = Calendar.current.date(byAdding: .day, value: dayOffset, to: date.startOfMonth) ?? .now
+			let newDay = Day(date: date, didStudy: false)
+			context.insert(newDay)
 		}
 	}
 }
 
 #Preview {
-    CalendarView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+    CalendarView()
 }

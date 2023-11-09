@@ -38,27 +38,27 @@ struct SwiftCalWidget: Widget {
 #Preview(as: .systemMedium) {
     SwiftCalWidget()
 } timeline: {
-	Entry(date: .now, days: PersistenceController.generatePreivewDays())
-	Entry(date: .now, days: PersistenceController.generatePreivewDays())
+	Entry(date: .now, days: Persistence.generatePreivewDays())
+	Entry(date: .now, days: Persistence.generatePreivewDays())
 }
 
 #Preview(as: .accessoryInline) {
 	SwiftCalWidget()
 } timeline: {
-	Entry(date: .now, days: PersistenceController.generatePreivewDays())
-	Entry(date: .now, days: PersistenceController.generatePreivewDays())
+	Entry(date: .now, days: Persistence.generatePreivewDays())
+	Entry(date: .now, days: Persistence.generatePreivewDays())
 }
 
 #Preview(as: .accessoryCircular) {
 	SwiftCalWidget()
 } timeline: {
-	Entry(date: .now, days: PersistenceController.generatePreivewDays())
-	Entry(date: .now, days: PersistenceController.generatePreivewDays())
+	Entry(date: .now, days: Persistence.generatePreivewDays())
+	Entry(date: .now, days: Persistence.generatePreivewDays())
 }
 
 #Preview(as: .accessoryRectangular) {
 	SwiftCalWidget()
 } timeline: {
-	Entry(date: .now, days: PersistenceController.generatePreivewDays())
-	Entry(date: .now, days: PersistenceController.generatePreivewDays())
+	Entry(date: .now, days: Persistence.generatePreivewDays())
+	Entry(date: .now, days: Persistence.generatePreivewDays())
 }

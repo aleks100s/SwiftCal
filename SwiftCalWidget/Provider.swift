@@ -6,20 +6,21 @@
 //
 
 import WidgetKit
+import SwiftData
 
-struct Provider: TimelineProvider {
-	private let viewContext = PersistenceController.shared.container.viewContext
-	
+struct Provider: TimelineProvider {	
 	func placeholder(in context: Context) -> Entry {
 		Entry(date: Date(), days: [])
 	}
 
+	@MainActor
 	func getSnapshot(in context: Context, completion: @escaping (Entry) -> ()) {
 		let days = fetchDays()
 		let entry = Entry(date: Date(), days: days)
 		completion(entry)
 	}
 
+	@MainActor
 	func getTimeline(in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
 		let days = fetchDays()
 		let entry = Entry(date: Date(), days: days)
@@ -27,12 +28,14 @@ struct Provider: TimelineProvider {
 		completion(timeline)
 	}
 	
+	@MainActor
 	private func fetchDays() -> [Day] {
-		let request = Day.fetchRequest()
-		request.sortDescriptors = [NSSortDescriptor(keyPath: \Day.date, ascending: true)]
-		request.predicate = NSPredicate(format: "(date >= %@) AND (date <= %@)", Date().startOfMonthWithCalendarPrefix as CVarArg, Date().endOfMonth as CVarArg)
 		do {
-			let days = try viewContext.fetch(request)
+			let startDate = Date.now.startOfMonthWithCalendarPrefix
+			let endDate = Date.now.endOfMonth
+			let predicate = #Predicate<Day> { $0.date > startDate && $0.date < endDate }
+			let descriptor = FetchDescriptor<Day>(predicate: predicate, sortBy: [.init(\.date)])
+			let days = try Persistence.container.mainContext.fetch(descriptor)
 			return days
 		} catch {
 			return []

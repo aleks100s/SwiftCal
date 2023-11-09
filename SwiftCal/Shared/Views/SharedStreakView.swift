@@ -32,5 +32,5 @@ struct SharedStreakView: View {
 }
 
 #Preview {
-	SharedStreakView(numberFontSize: 200, textFont: .title2, days: PersistenceController.generatePreivewDays())
+	SharedStreakView(numberFontSize: 200, textFont: .title2, days: Persistence.generatePreivewDays())
 }

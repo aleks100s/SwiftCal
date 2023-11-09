@@ -30,7 +30,7 @@ import WidgetKit
 
 struct MediumCalendarViewPreview: PreviewProvider {
 	static var previews: some View {
-		MediumCalendarView(entry: Entry(date: Date(), days: PersistenceController.generatePreivewDays()))
+		MediumCalendarView(entry: Entry(date: Date(), days: Persistence.generatePreivewDays()))
 			.containerBackground(for: .widget) {
 				Color.clear
 			}

@@ -29,7 +29,7 @@ import WidgetKit
 
 struct RectangularCalendarViewPreview: PreviewProvider {
 	static var previews: some View {
-		RectangularCalendarView(entry: Entry(date: Date(), days: PersistenceController.generatePreivewDays()))
+		RectangularCalendarView(entry: Entry(date: Date(), days: Persistence.generatePreivewDays()))
 			.containerBackground(for: .widget) {
 				Color.clear
 			}
