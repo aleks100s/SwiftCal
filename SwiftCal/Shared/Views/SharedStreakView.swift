@@ -20,6 +20,7 @@ struct SharedStreakView: View {
 			Text("\(streak)")
 				.font(.system(size: numberFontSize, weight: .semibold, design: .rounded))
 				.foregroundStyle(streak > 0 ? .orange : .pink)
+				.contentTransition(.numericText())
 			Text("Month Streak")
 				.font(textFont)
 				.bold()

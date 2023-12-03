@@ -10,7 +10,7 @@ import Foundation
 import SwiftData
 
 @Model 
-public class Day {
+public final class Day {
     var date: Date
     var didStudy: Bool
     

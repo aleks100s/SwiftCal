@@ -6,15 +6,31 @@
 //
 
 import SwiftUI
+import AppIntents
 
 struct MediumCalendarView: View {
 	let entry: Entry
 	
+	private var studyTitle: String {
+		entry.today.didStudy ? "Studied" : "Study"
+	}
+	
+	private var studyButtonIcon: String {
+		entry.today.didStudy ? "checkmark.circle" : "book"
+	}
+	
 	var body: some View {
 		HStack(spacing: 16) {
-			Link(destination: URL(string: "streak")!) {
-				SharedStreakView(numberFontSize: 70, textFont: .caption, days: entry.days)
+			VStack {
+				Link(destination: URL(string: "streak")!) {
+					SharedStreakView(numberFontSize: 70, textFont: .caption, days: entry.days)
+				}
+				
+				Button(studyTitle, systemImage: studyButtonIcon, intent: ToggleStudyIntent(date: entry.today.date))
+					.tint(entry.today.didStudy ? .mint : .orange)
+					.fontWidth(.compressed)
 			}
+			.frame(width: 100)
 			
 			VStack {
 				SharedCalendarHeader(font: .caption)

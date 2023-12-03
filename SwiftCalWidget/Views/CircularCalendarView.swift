@@ -11,7 +11,7 @@ struct CircularCalendarView: View {
 	let entry: Entry
 	
 	var body: some View {
-		Gauge(value: Double(entry.daysStudied), in: 1 ... Double(entry.currentCalendarDays)) {
+		Gauge(value: Double(entry.daysStudied), in: 0 ... Double(entry.currentCalendarDays)) {
 			Image(systemName: "swift")
 		} currentValueLabel: {
 			Text("\(entry.daysStudied)")
