@@ -52,7 +52,7 @@ extension Date {
 	
 	var startOfMonthWithCalendarPrefix: Date {
 		let startOfMonthWeekday = Calendar.current.component(.weekday, from: startOfMonth)
-		let offset = if startOfMonthWeekday == 1 { 6 } else { startOfMonthWeekday - 2 }
+		let offset = if startOfMonthWeekday == 1 { 6 } else { startOfMonthWeekday - 1 }
 		let startDate = Calendar.current.date(byAdding: .day, value: -offset, to: startOfMonth)
 		return startDate ?? Date()
 	}
